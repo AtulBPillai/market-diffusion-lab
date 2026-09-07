@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A live-style market information diffusion research dashboard." />
+    <title>Market Diffusion Lab</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">◈</span>
+        <div>
+          <p class="eyebrow">RESEARCH SYSTEM</p>
+          <h1>Market Diffusion Lab</h1>
+        </div>
+      </div>
+      <div class="run-controls" aria-label="Replay controls">
+        <label>
+          Seed
+          <input id="seed" type="number" min="0" max="999999" value="42" />
+        </label>
+        <label>
+          Replay
+          <select id="duration">
+            <option value="1200">20 minutes</option>
+            <option value="1800">30 minutes</option>
+            <option value="2400">40 minutes</option>
+          </select>
+        </label>
+        <button id="run-button" type="button">Run analysis</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow accent">DIRECTED PRICE DISCOVERY</p>
+          <h2>Where does market information move first?</h2>
+          <p class="intro">
+            A reproducible multi-venue replay estimates a sparse Hawkes-style network,
+            detects stress regimes, and tests whether lead–lag signals survive costs.
+          </p>
+        </div>
+        <div class="model-chip">
+          <span class="pulse"></span>
+          <span id="model-label">Loading model…</span>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Run metrics">
+        <article class="metric-card">
+          <p>Normalized events</p>
+          <strong id="event-count">—</strong>
+          <span id="source-label">—</span>
+        </article>
+        <article class="metric-card">
+          <p>Directed edges</p>
+          <strong id="edge-count">—</strong>
+          <span>Out-of-sample graph</span>
+        </article>
+        <article class="metric-card positive">
+          <p>Net simulated P&amp;L</p>
+          <strong id="pnl">—</strong>
+          <span id="trade-count">—</span>
+        </article>
+        <article class="metric-card">
+          <p>Risk-adjusted score</p>
+          <strong id="sharpe">—</strong>
+          <span id="drawdown">—</span>
+        </article>
+      </section>
+
+      <section class="grid top-grid">
+        <article class="panel network-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">MODEL OUTPUT</p>
+              <h3>Information diffusion network</h3>
+            </div>
+            <span class="legend"><i></i> excitation strength</span>
+          </div>
+          <canvas id="network-chart" width="720" height="360" aria-label="Directed market diffusion graph"></canvas>
+          <p class="caption">Edges are learned from strictly prior exchange events. Thicker lines indicate stronger estimated cross-excitation.</p>
+        </article>
+
+        <article class="panel regime-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">RISK FILTER</p>
+              <h3>Regime and stress timeline</h3>
+            </div>
+            <span class="tag">Causal features only</span>
+          </div>
+          <canvas id="regime-chart" width="560" height="360" aria-label="Market regime timeline"></canvas>
+          <div class="regime-key">
+            <span><i class="calm"></i> calm</span>
+            <span><i class="volatile"></i> volatile</span>
+            <span><i class="dislocated"></i> dislocated</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid bottom-grid">
+        <article class="panel results-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">ECONOMIC TEST</p>
+              <h3>Execution-aware backtest</h3>
+            </div>
+            <span class="tag" id="baseline-label">Baseline —</span>
+          </div>
+          <canvas id="equity-chart" width="720" height="270" aria-label="Backtest equity curve"></canvas>
+          <div class="comparison" id="comparison"></div>
+        </article>
+
+        <article class="panel edges-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">TOP RELATIONSHIPS</p>
+              <h3>Estimated leaders</h3>
+            </div>
+            <span class="tag">Sparse fit</span>
+          </div>
+          <div id="edge-list" class="edge-list" aria-live="polite"></div>
+        </article>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">AUDIT TRAIL</p>
+            <h3>Most recent simulated trades</h3>
+          </div>
+          <span class="tag">Fees + spread + slippage included</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Lead venue</th>
+                <th>Follower venue</th>
+                <th>Side</th>
+                <th>Regime</th>
+                <th>Gross bps</th>
+                <th>Cost bps</th>
+                <th>Net P&amp;L</th>
+              </tr>
+            </thead>
+            <tbody id="trade-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="method-note">
+        <strong>Research note.</strong> This is a controlled replay and backtest environment, not a live trading system or investment recommendation. Its purpose is to test a falsifiable question: whether a regime-aware diffusion model identifies information leaders better than a static baseline after realistic execution assumptions.
+      </section>
+    </main>
+
+    <footer>
+      <span>Market Diffusion Lab</span>
+      <span id="status" role="status">Initializing reproducible replay…</span>
+    </footer>
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>
+
