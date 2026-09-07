@@ -1,5 +1,7 @@
 # Market Diffusion Lab
 
+**Project maintainer:** [Atul Biju Pillai](https://github.com/AtulBPillai)
+
 [![Validate application](https://github.com/AtulBPillai/market-diffusion-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/AtulBPillai/market-diffusion-lab/actions/workflows/ci.yml)
 
 A deployable quant-research application for studying **how information diffuses across market venues**. It generates a reproducible multi-venue event replay, learns a sparse directed Hawkes-style network, detects market stress, and evaluates lead–lag signals after trading frictions.
