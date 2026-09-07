@@ -17,6 +17,22 @@ A deployable quant-research application for studying **how information diffuses 
 - Execution-aware out-of-sample backtest with fees, spread, slippage, cooldowns, and drawdown measurement.
 - FastAPI JSON API, Docker image, Docker Compose, automated tests, and GitHub Actions CI.
 
+## Screenshots
+
+Captured from the running application using reproducible synthetic data (seed 42, 20-minute replay). These images demonstrate the interface, not live-market performance.
+
+### Dashboard overview
+
+![Market Diffusion Lab dashboard](docs/screenshots/dashboard.png)
+
+### Information diffusion and market regimes
+
+![Directed diffusion network and market regime timeline](docs/screenshots/diffusion-network.png)
+
+### Backtest and estimated leaders
+
+![Execution-aware backtest and estimated leader relationships](docs/screenshots/backtest.png)
+
 ## Architecture
 
 ```mermaid
