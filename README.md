@@ -113,10 +113,6 @@ This project is a research and engineering demonstration. It is not a live tradi
 python -m pytest -q
 ```
 
-## Resume-ready description
-
-> Built a deployable market-information diffusion platform using a sparse Hawkes-style model to infer cross-venue price discovery from high-frequency event replay data; added causal regime detection and an execution-aware out-of-sample backtest accounting for fees, spread, slippage, P&L, and drawdown.
-
 ## License
 
 MIT. See [LICENSE](LICENSE).
